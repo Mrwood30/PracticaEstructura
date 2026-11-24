@@ -1,0 +1,20 @@
+## Ejercicio Techemp – Clínica veterinaria
+
+## Enunciado
+
+Techemp es una empresa dedicada al desarrollo de soluciones informáticas personalizadas, que ha sido contratada por una clínica veterinaria para crear una aplicación de escritorio que permita llevar un registro sistemático y eficiente de las mascotas atendidas. Inicialmente, la veterinaria gestionaba esta información en formatos físicos y hojas de cálculo, lo que dificultaba el acceso rápido a los datos, el seguimiento de los tratamientos y la actualización precisa del historial médico de cada mascota. Con el crecimiento de su clientela y el volumen de información generado, se ha vuelto imprescindible contar con un sistema automatizado, seguro y fácil de mantener.
+
+La solución propuesta por Techemp implica el diseño e implementación de una aplicación orientada a objetos que represente digitalmente las entidades clave del entorno veterinario. La aplicación debe gestionar de forma estructurada los datos de las mascotas, los propietarios, el personal veterinario y los tratamientos aplicados, así como permitir operaciones como el registro de nuevas mascotas, la asignación de tratamientos y la generación de informes médicos. Adicionalmente, la interfaz gráfica debe ofrecer formularios y vistas para crear y editar registros, listas filtrables y buscadores, así como paneles de detalle con el historial clínico.
+
+Para lograr una interfaz gráfica coherente y mantenible, el diseño debe apoyarse en herencia, polimorfismo y composición. Se propone una jerarquía de ventanas y componentes donde exista una superclase VentanaBase, con barra de herramientas, validación y navegación, de la que hereden VentanaMascota, VentanaPropietario y VentanaTratamiento, reutilizando comportamientos comunes y sobrescribiendo solo lo específico de cada caso. De igual forma, un componente FormularioAbstracto puede ser extendido por FormularioMascota, FormularioPropietario y FormularioTratamiento, asegurando consistencia en estilos, validaciones y manejo de eventos.
+
+El polimorfismo debe permitir que distintas especies de mascota (perro, gato, ave) se manejen mediante el mismo contrato de la superclase Mascota para renderizar fichas, calcular dosis o mostrar campos específicos en pantalla. Análogamente, Tratamiento actúa como tipo base para subtipos como Vacunación, Desparasitación o Cirugía, de modo que la UI invoque operaciones comunes (programar, aplicar, registrar efectos) sin conocer el subtipo concreto.
+
+La composición se reflejará en relaciones "tiene un", tanto del dominio como de la GUI: un Propietario compone una colección de mascotas; una VentanaMascota compone un PanelHistorial, un PanelDatosBasicos y una TablaTratamientos; un FormularioTratamiento compone controles de fecha, tipo, dosis y observaciones, orquestados por un controlador de eventos.
+
+El modelo debe integrar mecanismos de seguridad y privacidad: roles de usuario (recepción, auxiliar, veterinario) determinan qué vistas y acciones aparecen habilitadas. La composición de componentes de UI se coordina con servicios de autorización para habilitar o deshabilitar botones y menús. La herencia en VentanaBase centraliza políticas de sesión y manejo de errores.
+
+Se espera que el equipo identifique qué elementos de la interfaz conviene especializar por herencia, qué variaciones se gestionan de forma polimórfica (por ejemplo, renderizadores de filas o validadores por especie) y qué estructuras deben componerse para mantener bajo acoplamiento y alta cohesión. Con ello, la aplicación resultará consistente, extensible y fácil de mantener: nuevas especies, tratamientos o módulos de pantalla podrán añadirse creando subclases y componiendo nuevos paneles, sin modificar el núcleo común de la interfaz.
+
+## Pregunta a responder
+¿Cómo se aplicarían los principios de herencia, polimorfismo y composición en el diseño de las interfaces gráficas de la aplicación, y qué papel cumplen estos en la reutilización y flexibilidad del sistema?

@@ -50,3 +50,47 @@ Comprobante ──tiene──> Venta ──tiene──> Carrito ──tiene much
                          Cliente
                          Empleado
                          MedioPago
+
+## Respuesta
+
+Introducción
+Smart Market pasó de ser una tienda local a una cadena nacional, y su control manual en hojas de cálculo ya no soporta el volumen de productos, personas y transacciones. Diseñar el sistema con programación orientada a objetos permite representar cada elemento del supermercado como una clase organizada, reutilizable y fácil de extender. Para lograrlo se aplican tres principios: herencia, polimorfismo y composición.
+
+Herencia: organizar y reutilizar
+La herencia permite que una clase hija reciba los atributos y métodos de una clase madre y agregue los suyos. En Smart Market se definen dos clases abstractas: Producto, con código, nombre, precio y presentación, de la que heredan Perecedero, que agrega fecha de vencimiento, y NoPerecedero; y Persona, con nombre e identificación, de la que heredan Cliente, que agrega afiliación y puntos, y Empleado, que agrega cargo y salario. Así, los datos comunes se escriben una sola vez en la madre y cada hija solo define lo que la hace diferente. Si mañana se venden productos congelados, basta con crear Congelado como hija de Perecedero, sin modificar las clases existentes.
+
+Polimorfismo: garantizar flexibilidad
+El polimorfismo permite que un mismo método se comporte distinto según la clase que lo ejecuta. En Smart Market se definen dos interfaces: MedioPago, con el método pagar(), implementada por Efectivo, Tarjeta y Transferencia; y Promocion, con el método aplicarDescuento(), implementada por DosPorUno y DescuentoSegundaUnidad. La caja solo da la orden de pagar o aplicar el descuento, sin necesidad de saber qué tipo concreto lo resuelve. Por eso, agregar un nuevo medio de pago, como el pago con QR, o una nueva promoción, no exige cambiar el núcleo del sistema.
+
+Composición: conectar las transacciones
+La composición consiste en construir una clase a partir de objetos de otras clases, en una relación “tiene un”. En Smart Market, un Carrito tiene muchos productos y calcula el total a pagar; una Venta tiene un cliente, un empleado, un carrito, un medio de pago y una fecha; y un Comprobante tiene un número y la venta que respalda. Cada objeto conserva sus propios datos y los demás se los piden cuando los necesitan, de forma parecida a la normalización en bases de datos, lo que evita la redundancia y permite cambiar una pieza sin afectar a las demás.
+
+=================== HERENCIA ("es un") ===================
+
+          Producto (abstracta)                      Persona (abstracta)
+   codigo, nombre, precio, presentacion          nombre, identificacion
+          /                \                        /              \
+    Perecedero         NoPerecedero             Cliente          Empleado
+    fechaVencimiento                            afiliado         cargo
+         |                                      puntos           salario
+     Congelado
+     temperaturaMaxima
+
+============== POLIMORFISMO (interfaces, "sabe hacer") ==============
+
+        MedioPago (interfaz)                  Promocion (interfaz)
+        pagar(monto)                          aplicarDescuento(precio, cantidad)
+       /       |        \                        /                 \
+  Efectivo  Tarjeta  Transferencia         DosPorUno    DescuentoSegundaUnidad
+
+================ COMPOSICION ("tiene un") ================
+
+  Comprobante ──tiene──> Venta ──tiene──> Carrito ──tiene muchos──> Producto
+   numero                 fecha             calcularTotal()
+                          │
+                          ├──tiene──> Cliente
+                          ├──tiene──> Empleado
+                          └──tiene──> MedioPago
+
+Conclusión
+Los tres principios se complementan: la herencia organiza qué es cada entidad y reutiliza lo común, el polimorfismo permite que distintas clases respondan a la misma orden a su manera, y la composición conecta las piezas para formar las transacciones. El resultado es un sistema ordenado, sin código repetido y preparado para crecer junto con Smart Market sin tener que reescribir su núcleo.
