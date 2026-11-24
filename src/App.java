@@ -4,6 +4,7 @@ public class App {
         Tanque tanque1 = new Tanque("TK 001", 1000000, 800000);
         Tanque tanque2 = new Tanque("TK 002", 1500000, 1350000);
         Tanque tanque3 = new Tanque("TK 003", 5000, 9000);
+        Tanque tanque4 = new Tanque("TK 004", -100, 50);
 
         tanque1.mostrarInfo();
         System.out.println(tanque1.calcularPorcentajeLleno());
@@ -13,6 +14,9 @@ public class App {
 
         tanque3.mostrarInfo();
         System.out.println(tanque3.calcularPorcentajeLleno());
+
+        tanque4.mostrarInfo();
+        System.out.println(tanque4.calcularPorcentajeLleno());
     }
 
 }

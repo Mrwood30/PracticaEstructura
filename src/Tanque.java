@@ -9,36 +9,37 @@ public class Tanque {
         setNivelActualBls(nivelActualBls);
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getNombre() {
         return this.nombre;
     }
 
-    public void setCapacidadBls(double capacidadBls) {
-        if (capacidadBls > 0) {
-            this.capacidadBls = capacidadBls;
-        } else {
-            System.out.println("La capacidad debe ser mayor a cero");
-        }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public double getCapacidadBls() {
         return this.capacidadBls;
     }
 
-    public void setNivelActualBls(double nivelActualBls) {
-        if (nivelActualBls >= 0 && nivelActualBls <= this.capacidadBls) {
-            this.nivelActualBls = nivelActualBls;
+    public void setCapacidadBls(double capacidadBls) {
+        if (capacidadBls > 0) {
+            this.capacidadBls = capacidadBls;
         } else {
-            System.out.println("Error en: "  + this.nombre + " El nivel debe estar entre 0 y " + this.capacidadBls + " Bls");
+            System.out.println("Error en: " + this.nombre + " La capacidad debe ser mayor a cero");
         }
     }
 
     public double getNivelActualBls() {
         return this.nivelActualBls;
+    }
+
+    public void setNivelActualBls(double nivelActualBls) {
+        if (nivelActualBls >= 0 && nivelActualBls <= this.capacidadBls) {
+            this.nivelActualBls = nivelActualBls;
+        } else {
+            System.out.println(
+                    "Error en: " + this.nombre + " El nivel debe estar entre 0 y " + this.capacidadBls + " Bls");
+        }
     }
 
     public void mostrarInfo() {
@@ -48,8 +49,12 @@ public class Tanque {
     }
 
     public double calcularPorcentajeLleno() {
-        return ((nivelActualBls / capacidadBls) * 100);
-
+        if (capacidadBls <= 0) {
+            System.out.println("Error en: " + this.nombre + " ...");
+            return (0);
+        } else {
+            return (nivelActualBls / capacidadBls) * 100;
+        }
     }
 
 }
