@@ -17,3 +17,36 @@ A partir del escenario descrito, se espera que se definan superclases como Produ
 ## Pregunta a responder
 
 ¿Qué superclases, clases abstractas e interfaces debería definir el estudiante para Smart Market y qué responsabilidades esenciales debería concentrar cada una para garantizar que el modelo pueda extenderse sin modificar su núcleo?
+
+
+# Diseno
+
+        Producto (abstracta)
+   codigo, nombre, precio, presentacion
+         /                \
+  Perecedero          NoPerecedero
+  fechaVencimiento
+
+  ## Diseno Actualizado
+
+          Producto (abstracta)                 Persona (abstracta)
+  codigo, nombre, precio, presentacion      nombre, identificacion, ...
+         /            \                        /            \
+  Perecedero     NoPerecedero              Cliente        Empleado
+  fechaVencimiento                         afiliado        cargo
+                                           puntos          salario
+
+## Boceto de interfaces:
+
+   MedioPago (interfaz)              Promocion (interfaz)
+   pagar(monto)                      aplicarDescuento(precio, cantidad)
+   /      |        \                    /                \
+Efectivo Tarjeta Transferencia     DosPorUno   DescuentoSegundaUnidad
+
+## Boceto de composición:
+
+Comprobante ──tiene──> Venta ──tiene──> Carrito ──tiene muchos──> Producto
+  numero                 fecha                  calcularTotal()
+                         Cliente
+                         Empleado
+                         MedioPago
