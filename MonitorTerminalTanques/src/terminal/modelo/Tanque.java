@@ -16,6 +16,14 @@ public class Tanque {
     }
 
     public void setNombre(String nombre) {
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío o nulo.");
+
+        }
+        if (!nombre.matches("TK \\d{3}")) {
+            throw new IllegalArgumentException("El formato de nombre debe ser TK 000: " + nombre);
+        }
+
         this.nombre = nombre;
     }
 
@@ -24,11 +32,11 @@ public class Tanque {
     }
 
     public void setCapacidadBls(double capacidadBls) {
-        if (capacidadBls > 0) {
-            this.capacidadBls = capacidadBls;
-        } else {
-            System.out.println("Error en: " + this.nombre + " La capacidad debe ser mayor a cero");
+        if (capacidadBls <= 0) {
+            throw new IllegalArgumentException("Error en: " + this.nombre + " La capacidad debe ser mayor a cero: "+ capacidadBls);
         }
+
+        this.capacidadBls = capacidadBls;
     }
 
     public double getNivelActualBls() {
