@@ -1,3 +1,5 @@
+package terminal.modelo;
+
 public class Tanque {
     private String nombre;
     private double capacidadBls;

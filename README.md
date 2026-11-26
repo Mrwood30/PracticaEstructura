@@ -1,18 +1,16 @@
-## Getting Started
+# Práctica de Programación Orientada a Objetos en Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Repositorio de práctica con tres proyectos. Cada uno se abre por separado en VS Code (File > Open Folder).
 
-## Folder Structure
+| Carpeta | Proyecto | Estado |
+|---|---|---|
+| `MonitorTerminalTanques/` | Monitor de terminal de tanques (midstream): Equipo, Tanque, Bomba, Valvula, Terminal, lectura de CSV | En curso: clase Tanque |
+| `SmartMarket/` | Ejercicio Smart Market: abstracción, interfaces y composición | Diseño en `docs/` |
+| `VeterinariaTechemp/` | Ejercicio Techemp, clínica veterinaria: herencia, polimorfismo y composición en GUI | Enunciado en `docs/` |
 
-The workspace contains two folders by default, where:
+## Estructura de cada proyecto
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- `src/`: código fuente, organizado en paquetes
+- `docs/`: enunciados, diseños y notas
+- `data/`: archivos CSV (solo en MonitorTerminalTanques)
+- `.vscode/settings.json`: configuración de Java para VS Code
